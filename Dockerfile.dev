@@ -1,0 +1,21 @@
+FROM alpine:latest
+
+RUN apk add --no-cache bash openssh-client findutils
+
+COPY scripts/*.sh /
+
+# DEV ENV VARS
+ENV REMOTE_HOST="host.example.com"
+ENV REMOTE_PORT="22"
+ENV REMOTE_USER="new-user"
+ENV REMOTE_PRIVATE_KEY="-----BEGIN OPENSSH PRIVATE KEY-----\n   PAY ATTENTION TO THE NEWLINE CHARACTERS!!   \n-----END OPENSSH PRIVATE KEY-----\n"
+ENV STACK_FILE="/opt/projects/docker-stack.yaml"
+ENV STACK_NAME="vpshost"
+ENV STACK_PARAM=""
+# ENV ENV_FILE=""
+# ENV DEPLOY_TIMEOUT="600"
+ENV DEBUG="1"
+
+# WORKDIR /github/workspace
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,0 +1,9 @@
+.git
+.github
+.gitignore
+.env
+action.yml
+Dockerfile
+README.md
+package.json
+package-lock.json
