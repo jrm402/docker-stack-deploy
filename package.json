@@ -1,19 +1,19 @@
 {
-  "name": "docker-stack-deploy",
-  "version": "1.0.0",
-  "description": "GitHub Action used to deploy a Docker stack on a Docker Swarm",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jrm402/docker-stack-deploy.git"
-  },
-  "author": "jrm402",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jrm402/docker-stack-deploy/issues"
-  },
-  "homepage": "https://github.com/jrm402/docker-stack-deploy#readme"
+	"name": "docker-stack-deploy",
+	"version": "1.0.1",
+	"description": "GitHub Action used to deploy a Docker stack on a Docker Swarm",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/jrm402/docker-stack-deploy.git"
+	},
+	"author": "jrm402",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/jrm402/docker-stack-deploy/issues"
+	},
+	"homepage": "https://github.com/jrm402/docker-stack-deploy#readme"
 }
