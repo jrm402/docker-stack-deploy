@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.0.2
+
+### Changes
+
+Update action name to `Docker Swarm Deploy Action` to be unique.
+
 ## v1.0.1
 
 ### Changes

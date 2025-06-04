@@ -1,4 +1,4 @@
-name: "Docker Stack Deploy Action"
+name: "Docker Swarm Deploy Action"
 description: "Deploy a Docker stack on a Docker Swarm"
 inputs:
   remote_host:
