@@ -186,6 +186,7 @@ if [[ -n "${DOCKER_LOGIN_REGISTRY}" ]]; then
   else
     echo -e "Docker Login: Failed to login to registry\n"
     exit 1
+  fi
 fi
 
 if deploy > $OUT; then
