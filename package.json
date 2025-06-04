@@ -1,6 +1,6 @@
 {
 	"name": "docker-stack-deploy",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "GitHub Action used to deploy a Docker stack on a Docker Swarm",
 	"main": "index.js",
 	"scripts": {

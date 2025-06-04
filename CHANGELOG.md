@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.0.3
+
+### Changes
+
+Add ability to perform a docker login on the host.
+
 ## v1.0.2
 
 ### Changes

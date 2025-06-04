@@ -65,6 +65,11 @@ connect_ssh() {
   fi
 }
 
+authenticate() {
+  echo "Performing docker login..."
+  ${SSH_COMMAND} docker login "${DOCKER_LOGIN_REGISTRY}" -u "${DOCKER_LOGIN_USERNAME}" -p "${DOCKER_LOGIN_PASSWORD}"
+}
+
 deploy() {
   echo "Deploy..."
   ${SSH_COMMAND} docker stack deploy --with-registry-auth -c "${STACK_FILE}" "${STACK_NAME}"
@@ -174,6 +179,14 @@ else
 fi
 
 # export DOCKER_HOST="ssh://${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PORT}"
+
+if [[ -n "${DOCKER_LOGIN_REGISTRY}" ]]; then
+  if authenticate > $OUT; then
+    echo -e "Docker Login: Success\n"
+  else
+    echo -e "Docker Login: Failed to login to registry\n"
+    exit 1
+fi
 
 if deploy > $OUT; then
   echo -e "Deploy: Updated services\n"
