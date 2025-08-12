@@ -48,7 +48,7 @@ configure_ssh_key() {
 
 configure_ssh_host() {
   echo "Configure SSH host..."
-  ssh-keyscan -p "${REMOTE_PORT}" -H "${REMOTE_HOST}" > "${KNOWN_HOSTS}"
+  ssh-keyscan -p "${REMOTE_PORT}" -H "${REMOTE_HOST}" >> "${KNOWN_HOSTS}"
   chmod 600 "${KNOWN_HOSTS}"
 }
 
@@ -58,7 +58,7 @@ connect_ssh() {
   # if [ "${SSH_VERBOSE}" != "" ]; then
   #   cmd="ssh ${SSH_VERBOSE}"
   # fi
-  export SSH_COMMAND="${cmd} -p ${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_HOST}"
+  export SSH_COMMAND="${cmd} -o UserKnownHostsFile=\"${KNOWN_HOSTS}\" -p ${REMOTE_PORT} ${REMOTE_USER}@${REMOTE_HOST}"
   user=$(${SSH_COMMAND} whoami)
   if [ "${user}" != "${REMOTE_USER}" ]; then
     exit 1;
