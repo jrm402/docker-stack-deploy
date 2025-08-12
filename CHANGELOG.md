@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v1.0.5
+
+### Changes
+
+- Hash remote host
+- Prune docker swarm restart
+- Set detach=true on docker swarm restart
+
 ## v1.0.4
 
 ### Changes
