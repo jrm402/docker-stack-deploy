@@ -48,7 +48,7 @@ configure_ssh_key() {
 
 configure_ssh_host() {
   echo "Configure SSH host..."
-  ssh-keyscan -p "${REMOTE_PORT}" "${REMOTE_HOST}" > "${KNOWN_HOSTS}"
+  ssh-keyscan -p "${REMOTE_PORT}" -H "${REMOTE_HOST}" > "${KNOWN_HOSTS}"
   chmod 600 "${KNOWN_HOSTS}"
 }
 
@@ -72,7 +72,7 @@ authenticate() {
 
 deploy() {
   echo "Deploy..."
-  ${SSH_COMMAND} docker stack deploy --with-registry-auth -c "${STACK_FILE}" "${STACK_NAME}"
+  ${SSH_COMMAND} docker stack deploy -c "${STACK_FILE}" "${STACK_NAME}" --with-registry-auth --detach=true --prune
 }
 
 # check_deploy() {
