@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.0.6
+
+### Changes
+
+- Clean up known_hosts if hostname has changed
+
 ## v1.0.5
 
 ### Changes
