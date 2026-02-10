@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.1.0
+
+### Changes
+
+- Feat: Add the ability to specify custom `ssh` commands via the `ssh_command` input.
+
 ## v1.0.6
 
 ### Changes
