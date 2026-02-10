@@ -67,7 +67,7 @@ connect_ssh() {
 
 authenticate() {
   echo "Performing docker login..."
-  ${SSH_COMMAND} docker login "${DOCKER_LOGIN_REGISTRY}" -u "${DOCKER_LOGIN_USERNAME}" -p "${DOCKER_LOGIN_PASSWORD}"
+  echo "${DOCKER_LOGIN_PASSWORD}" | ${SSH_COMMAND} docker login "${DOCKER_LOGIN_REGISTRY}" -u "${DOCKER_LOGIN_USERNAME}" --password-stdin
 }
 
 deploy() {

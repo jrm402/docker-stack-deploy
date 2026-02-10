@@ -12,13 +12,21 @@ ENV REMOTE_PRIVATE_KEY="-----BEGIN OPENSSH PRIVATE KEY-----\n   PAY ATTENTION TO
 ENV STACK_FILE="/opt/projects/docker-stack.yaml"
 ENV STACK_NAME="vpshost"
 ENV STACK_PARAM=""
+
 # -- Test folded (>-) style: uncomment the line below (single line with &&)
 # ENV SSH_CUSTOM_COMMAND="echo 'step 1' && echo 'step 2' && echo 'done'"
 #
 # -- Test literal (|) style: keep the above commented out and pass via docker run:
 #    docker run --rm -e SSH_CUSTOM_COMMAND=$'set -e\necho step 1\necho step 2\necho done' docker-stack-deploy
+
 # ENV ENV_FILE=""
 # ENV DEPLOY_TIMEOUT="600"
+
+# -- Test Docker authentication
+# ENV DOCKER_LOGIN_REGISTRY="ghcr.io"
+# ENV DOCKER_LOGIN_USERNAME=""
+# ENV DOCKER_LOGIN_PASSWORD=""
+
 ENV DEBUG="1"
 
 # WORKDIR /github/workspace
