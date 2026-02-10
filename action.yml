@@ -14,12 +14,18 @@ inputs:
   remote_private_key:
     description: "Private key used for ssh authentication"
     required: true
+  ssh_command:
+    description: "Custom SSH command to run on the remote host instead of docker stack deploy. When set, stack_file and stack_name are not required."
+    required: false
+    default: ""
   stack_file:
     description: "Path to the stack file to be used for deploy"
-    required: true
+    required: false
+    default: ""
   stack_name:
     description: "Name of the stack to be deployed"
-    required: true
+    required: false
+    default: ""
   stack_param:
     description: "Additional stack parameter value"
     required: false
@@ -56,6 +62,7 @@ runs:
     REMOTE_PORT: ${{ inputs.remote_port }}
     REMOTE_USER: ${{ inputs.remote_user }}
     REMOTE_PRIVATE_KEY: ${{ inputs.remote_private_key }}
+    SSH_CUSTOM_COMMAND: ${{ inputs.ssh_command }}
     STACK_FILE: ${{ inputs.stack_file }}
     STACK_NAME: ${{ inputs.stack_name }}
     STACK_PARAM: ${{ inputs.stack_param }}

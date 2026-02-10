@@ -71,8 +71,13 @@ authenticate() {
 }
 
 deploy() {
-  echo "Deploy..."
-  ${SSH_COMMAND} docker stack deploy -c "${STACK_FILE}" "${STACK_NAME}" --with-registry-auth --detach=true --prune
+  if [[ -n "${SSH_CUSTOM_COMMAND}" ]]; then
+    echo "Running custom SSH command..."
+    ${SSH_COMMAND} "${SSH_CUSTOM_COMMAND}"
+  else
+    echo "Deploy..."
+    ${SSH_COMMAND} docker stack deploy -c "${STACK_FILE}" "${STACK_NAME}" --with-registry-auth --detach=true --prune
+  fi
 }
 
 # check_deploy() {
@@ -132,20 +137,17 @@ if [[ -z "${REMOTE_PRIVATE_KEY}" ]]; then
   echo "Input private_key is required!"
   exit 1
 fi
-# CHECK STACK VARIABLES
-if [[ -z "${STACK_FILE}" ]]; then
-  echo "Input stack_file is required!"
-  exit 1
-# else
-#   if [ ! -f "${STACK_FILE}" ]; then
-#     echo "${STACK_FILE} does not exist."
-#     exit 1
-#   fi
-fi
+# CHECK STACK VARIABLES (only required when no custom SSH command)
+if [[ -z "${SSH_CUSTOM_COMMAND}" ]]; then
+  if [[ -z "${STACK_FILE}" ]]; then
+    echo "Input stack_file is required when ssh_command is not set!"
+    exit 1
+  fi
 
-if [[ -z "${STACK_NAME}" ]]; then
-  echo "Input stack_name is required!"
-  exit 1
+  if [[ -z "${STACK_NAME}" ]]; then
+    echo "Input stack_name is required when ssh_command is not set!"
+    exit 1
+  fi
 fi
 
 
@@ -189,11 +191,20 @@ if [[ -n "${DOCKER_LOGIN_REGISTRY}" ]]; then
   fi
 fi
 
-if deploy > $OUT; then
-  echo -e "Deploy: Updated services\n"
+if [[ -n "${SSH_CUSTOM_COMMAND}" ]]; then
+  if deploy > $OUT; then
+    echo -e "Custom command: Success\n"
+  else
+    echo -e "Custom command: Failed\n"
+    exit 1
+  fi
 else
-  echo -e "Deploy: Failed to deploy ${STACK_NAME} from file ${STACK_FILE}\n"
-  exit 1
+  if deploy > $OUT; then
+    echo -e "Deploy: Updated services\n"
+  else
+    echo -e "Deploy: Failed to deploy ${STACK_NAME} from file ${STACK_FILE}\n"
+    exit 1
+  fi
 fi
 
 # if check_deploy; then
