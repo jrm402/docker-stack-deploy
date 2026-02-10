@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v1.2.0
+
+### Changes
+
+- Feat: Pipe the Docker login password to the stdin instead of using the `--password` flag.
+
 ## v1.1.0
 
 ### Changes
